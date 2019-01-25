@@ -93,5 +93,23 @@ public final class Engine {
 		}
 		return stockProductsValue;
 	}
+	
+	private static void printStockedProductsAlphabetically() {
+		for (Product product : getStockedProductsAlphabeticallySorted()) {
+			System.out.println(product);
+		}
+	}
+
+	private static void printOutOfStockProductsAlphabetically() {
+		for (Product product : getOutOfStockProductsAlphabeticallySorted()) {
+			System.out.println(product);
+		}
+	}
+
+	private static void printAllProductsByQuantityDecreasing() {
+		for (Product product : getAllProductsSortedByQuantityDecreasing()) {
+			System.out.println(product);
+		}
+	}
 
 }

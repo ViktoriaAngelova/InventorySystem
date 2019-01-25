@@ -50,4 +50,16 @@ public final class Engine {
 		stockedProducts.add(new DefaultProduct(name, barcode, price, quantity));
 	}
 	
+	private static void storeProduct(final String barcode, final double quantity) {
+		Product product = null;
+		try {
+			product = getProduct(barcode);
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+		}
+		if (product != null) {
+			product.store(quantity);
+		}
+	}
+	
 }

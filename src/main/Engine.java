@@ -62,4 +62,12 @@ public final class Engine {
 		}
 	}
 	
+	private static double calculateStockProductsValue() {
+		double stockProductsValue = 0;
+		for (Product product : stockedProducts) {
+			stockProductsValue += product.getStockedValue();
+		}
+		return stockProductsValue;
+	}
+	
 }

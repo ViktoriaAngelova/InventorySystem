@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 import core.*;
 
@@ -22,6 +23,43 @@ public final class Engine {
 
 	private Engine() {
 		throw new UnsupportedOperationException();
+	}
+
+	public static void run() {
+		Scanner input = new Scanner(System.in);
+		String userInput = input.nextLine();
+		String[] inputArray;
+
+		while (!userInput.equalsIgnoreCase("close")) {
+			inputArray = userInput.trim().split(" ");
+			switch (inputArray[0].toLowerCase()) {
+			case "sell":
+				sellProduct(inputArray[1], Double.parseDouble(inputArray[2]));
+				break;
+			case "add":
+				addProduct(inputArray[1], inputArray[2], Double.parseDouble(inputArray[3]),
+						Double.parseDouble(inputArray[4]));
+				break;
+			case "update":
+				storeProduct(inputArray[1], Double.parseDouble(inputArray[2]));
+			case "printa":
+				printStockedProductsAlphabetically();
+				break;
+			case "printu":
+				printOutOfStockProductsAlphabetically();
+				break;
+			case "printd":
+				printAllProductsByQuantityDecreasing();
+				break;
+			case "calculate":
+				System.out.println(calculateStockProductsValue());
+				break;
+			default:
+				System.out.println("Invalid comand!");
+			}
+			userInput = input.nextLine();
+		}
+		input.close();
 	}
 
 	private static Product getProduct(final String barcode) {
@@ -44,7 +82,7 @@ public final class Engine {
 		Collections.sort(outOfStockProductsAlphabeticallySorted, nameComparator);
 		return outOfStockProductsAlphabeticallySorted;
 	}
-	
+
 	private static List<Product> getAllProductsSortedByQuantityDecreasing() {
 		List<Product> allProductsSortetByQuantityDecreasing = new ArrayList<>(stockedProducts);
 		allProductsSortetByQuantityDecreasing.addAll(outOfStockProducts);
@@ -93,7 +131,7 @@ public final class Engine {
 		}
 		return stockProductsValue;
 	}
-	
+
 	private static void printStockedProductsAlphabetically() {
 		for (Product product : getStockedProductsAlphabeticallySorted()) {
 			System.out.println(product);

@@ -44,6 +44,14 @@ public final class Engine {
 		Collections.sort(outOfStockProductsAlphabeticallySorted, nameComparator);
 		return outOfStockProductsAlphabeticallySorted;
 	}
+	
+	private static List<Product> getAllProductsSortedByQuantityDecreasing() {
+		List<Product> allProductsSortetByQuantityDecreasing = new ArrayList<>(stockedProducts);
+		allProductsSortetByQuantityDecreasing.addAll(outOfStockProducts);
+		Comparator<Product> comparator = new QuantityComparatorDecreasing();
+		Collections.sort(allProductsSortetByQuantityDecreasing, comparator);
+		return allProductsSortetByQuantityDecreasing;
+	}
 
 	private static void sellProduct(final String barcode, final double quantity) {
 		Product product = null;

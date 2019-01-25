@@ -29,4 +29,21 @@ public final class Engine {
 		throw new NoSuchElementException("Product does not exist!");
 	}
 	
+	private static void sellProduct(final String barcode, final double quantity) {
+		Product product = null;
+		try {
+			product = getProduct(barcode);
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+		}
+		if (product != null) {
+			try {
+				product.sell(quantity);
+
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	
 }

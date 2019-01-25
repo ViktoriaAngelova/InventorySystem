@@ -46,4 +46,8 @@ public final class Engine {
 		}
 	}
 	
+	private static void addProduct(final String barcode, final String name, final double price, final double quantity) {
+		stockedProducts.add(new DefaultProduct(name, barcode, price, quantity));
+	}
+	
 }
